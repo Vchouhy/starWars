@@ -1,0 +1,29 @@
+.paginator{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    list-style: none;
+   
+}
+
+li {
+    button {
+      padding: 5px 10px;
+      margin: 0 5px;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      color: #007bff; /* Color de texto para los botones de página normal */
+
+  }
+  button.active {
+    background-color: #007bff;
+    color: #fff;
+  }
+}
+
+.active {
+    background-color: #007bff;
+    color: #fff;
+  }
+
