@@ -1,15 +1,7 @@
 const Vehicle = require("./model");
-const Film = require("./../films/model");
+// const Film = require("./../films/model")
 
-const getFilmTitle = async (filmLink) => {
-  try {
-    const film = await Film.findOne({ url: filmLink });
-    return film.title;
-  } catch (error) {
-    // console.error("Error al buscar el título del film:");
-    // throw error;
-  }
-};
+
 
 const getAllVehicles = async () => {
   try {
@@ -19,6 +11,21 @@ const getAllVehicles = async () => {
     // res.status(500).json({ message: "Error al obtener vehicles"});
   }
 };
+
+
+const search = async (search) => {
+  try {
+    const searchResults = await Vehicle.find({
+      name: { $regex: search.search, $options: "i" },
+    });
+    console.log(searchResults)
+    return searchResults;
+  } catch (error) {
+    console.error("Error al buscar elementos:", error);
+    res.status(500).json({ error: "Error al buscar elementos" });
+  }
+};
+
 
 const pipeline = [
   {
@@ -124,5 +131,5 @@ const pipeline = [
  */
 
 module.exports = {
-  getAllVehicles,
+  getAllVehicles, search
 };

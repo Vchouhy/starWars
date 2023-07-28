@@ -13,6 +13,19 @@ const getAllPlanetsFromDB = async () => {
   }
 };
 
+
+const search = async (search) => {
+  try {
+    const searchResults = await Planet.find({
+      name: { $regex: search.search, $options: "i" },
+    });
+    return searchResults;
+  } catch (error) {
+    console.error("Error al buscar elementos:", error);
+    res.status(500).json({ error: "Error al buscar elementos" });
+  }
+};
+
 // const getById = async (id) => {
 //   try {
 //     const ObjectId = mongoose.Types.ObjectId;
@@ -105,6 +118,6 @@ const pipeline = [
   ]
 
 module.exports = {
-  getAllPlanetsFromDB, 
+  getAllPlanetsFromDB, search
 //   getById
 };

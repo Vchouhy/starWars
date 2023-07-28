@@ -10,6 +10,19 @@ module.exports.getAllFilms = async () => {
     }
   };
 
+  module.exports.search = async (search) => {
+
+    try {
+      const searchResults = await Films.find({ title: { $regex: search.search, $options: 'i' } });
+   return searchResults
+    } catch (error) {
+      console.error('Error al buscar elementos:', error);
+      res.status(500).json({ error: 'Error al buscar elementos' });
+    }
+  };
+  
+
+
 let pipeline = [
     {
       $lookup: {

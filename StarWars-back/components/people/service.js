@@ -17,16 +17,27 @@ const getAllPeopleFromDB = async (req, res, next) => {
   }
 };
 
-const getById = async (req, res, next) => {
-  try {
-    console.log('done')
-      // res.send(await controller.getById(req.params.id));
-  } catch (e) {
-    console.log('error')
-      // next(createError(500, e));
+const search = async (req, res, next) =>{
+  try{
+    res.send(await controller.search({
+      search: req.query.search
+    }))
+ 
+  }catch(e){
+
   }
-};
+}
+
+// const getById = async (req, res, next) => {
+//   try {
+//     console.log('done')
+//       // res.send(await controller.getById(req.params.id));
+//   } catch (e) {
+//     console.log('error')
+//       // next(createError(500, e));
+//   }
+// };
 
 module.exports = {
-  getAllPeopleFromDB, getById
+  getAllPeopleFromDB, search
 };

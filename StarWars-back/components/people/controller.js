@@ -13,16 +13,28 @@ const getAllPeople = async ({page = 0, limit = 6, sort = -1, sortField = 'A-Z', 
   }
 };
 
-const getById = async (id) => {
+// const getById = async (id) => {
+//   try {
+//     const ObjectId = mongoose.Types.ObjectId;
+//     const objectId = new ObjectId(id); 
+//     let aggregate = { $match: { _id: objectId } };
+//     pipeline.unshift(aggregate); 
+//     const people = await Person.aggregate(pipeline);
+//     return people;
+//   } catch (error) {
+//     console.log('error');
+//   }
+// };
+
+const search = async (search) => {
   try {
-    const ObjectId = mongoose.Types.ObjectId;
-    const objectId = new ObjectId(id); 
-    let aggregate = { $match: { _id: objectId } };
-    pipeline.unshift(aggregate); 
-    const people = await Person.aggregate(pipeline);
-    return people;
+    const searchResults = await Person.find({
+      name: { $regex: search.search, $options: "i" },
+    });
+    return searchResults;
   } catch (error) {
-    console.log('error');
+    console.error("Error al buscar elementos:", error);
+    res.status(500).json({ error: "Error al buscar elementos" });
   }
 };
 
@@ -115,5 +127,5 @@ const pipeline = [
 
 
 module.exports = {
-  getAllPeople, getById
+  getAllPeople, search
 };

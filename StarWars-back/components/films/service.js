@@ -10,3 +10,14 @@ module.exports.getAllFilms = async (req, res, next) => {
       console.log('errorService')
   }
 };
+
+module.exports.search = async (req, res, next) =>{
+  try{
+    res.send(await controller.search({
+      search: req.query.search
+    }))
+ 
+  }catch(e){
+
+  }
+}
