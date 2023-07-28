@@ -1,23 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Card from "../../GenericComponents/Card/Card";
 import { useSelector } from "react-redux";
-import "./People.scss";
 import Modals from "../../GenericComponents/Modal/Modals";
 import { useModal } from "../../hooks/useModal";
 import Pagination from "../../GenericComponents/Pagination/Pagination";
+import SearchBar from "../../GenericComponents/SearchBar/SerchBar";
+import "./People.scss";
+
 
 const People = () => {
+  const searchResults = useSelector((state) => state.searchResults.people);
   const people = useSelector((state) => state.people);
-  const [selectedPerson, setSelectedPerson] = useState(null);
+  const peopleResults = searchResults && searchResults.length ? searchResults : null;
+
+  const [selectedPerson, setselectedPerson] = useState(null);
   const [isOpenModal, openModal, closeModal] = useModal(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [peoplePerPage, setPeoplePerPage] = useState(8);
-  const indexOfLastPerson = currentPage * peoplePerPage;
-  const indexOfFirstPerson = indexOfLastPerson - peoplePerPage;
-  const currentPerson = people.slice(indexOfFirstPerson, indexOfLastPerson);
+  const [personPerPage, setPersonPerPage] = useState(8);
+  const [hasSearchResults, setHasSearchResults] = useState(false);
+  const [currentPerson, setCurrentPerson] = useState([]);
+
+  useEffect(() => {
+    const indexOfLastPerson = currentPage * personPerPage;
+    const indexOfFirstPerson = indexOfLastPerson - personPerPage;
+    if (hasSearchResults && searchResults) {
+      setCurrentPerson(searchResults.slice(indexOfFirstPerson, indexOfLastPerson));
+    } else {
+      setCurrentPerson(people.slice(indexOfFirstPerson, indexOfLastPerson));
+    }
+  }, [hasSearchResults, currentPage, personPerPage, people, searchResults]);
+
+  useEffect(() => {
+    setHasSearchResults(searchResults && searchResults.length > 0);
+    setCurrentPage(1);
+  }, [searchResults]);
 
   const handleOpenModal = (person) => {
-    setSelectedPerson({ ...person, isPerson: true });
+    setselectedPerson({ ...person, isPerson: true });
     openModal();
   };
 
@@ -26,31 +45,32 @@ const People = () => {
   };
 
   return (
+    <>
     <div>
-
-    <div className="main-container">
-      {currentPerson.map((person) => {
-        return (
-          <Card key={person._id} name={person.name}>
-            <button onClick={() => handleOpenModal(person)}>OpenDetail</button>
-          </Card>
-        );
-      })}
-      {isOpenModal && selectedPerson && (
-        <Modals isOpen={isOpenModal} closeModal={closeModal}>
-          {selectedPerson}
-        </Modals>
-      )}
+        <SearchBar prop="people" />
+      <div className="people-main-container">
+        {currentPerson.map((person) => {
+          return (
+            <Card key={person._id} name={person.name}>
+              <button onClick={() => handleOpenModal(person)}>OpenDetail</button>
+            </Card>
+          );
+        })}
+        {isOpenModal && selectedPerson && (
+          <Modals isOpen={isOpenModal} closeModal={closeModal}>
+            {selectedPerson}
+          </Modals>
+        )}
+      </div>
     </div>
- 
       <Pagination
-          propPerPage={peoplePerPage}
-          length={people.length}
-          pagination={pagination}
-          currentPage={currentPage}
-        />
-    </div>
+        propPerPage={personPerPage}
+        length={hasSearchResults ? searchResults.length : people.length}
+        pagination={pagination}
+        currentPage={currentPage}
+      />
+    </>
   );
-};
+        };
 
 export default People;

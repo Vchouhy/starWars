@@ -5,6 +5,7 @@ export const GET_PLANETS = "GET_PLANETS"
 export const GET_VEHICLES = "GET_VEHICLES"
 export const GET_FILMS = "GET_FILMS"
 export const PEOPLE_ID = "PEOPLE_ID"
+export const SEARCH_ITEMS = "SEARCH_ITEMS"
 
 //Section PEOPLE
 
@@ -58,5 +59,16 @@ export const getAllFilms = () => {
 
     dispatch({type: GET_FILMS, payload: user})
    }
+};
+
+//Section GRAL
+
+export const searchItems = (searchQuery, prop) => {
+  return async function (dispatch) {
+    const apiData = await axios.get(`http://localhost:5001/${prop}/search?search=${searchQuery}`);
+    const result = apiData.data;
+    console.log(result);
+    dispatch({ type: SEARCH_ITEMS, payload: { prop, result } });
+  };
 };
 

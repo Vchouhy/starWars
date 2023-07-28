@@ -1,4 +1,4 @@
-import { GET_PEOPLE, GET_PLANETS, GET_VEHICLES, GET_FILMS,   } from "./actions";
+import { GET_PEOPLE, GET_PLANETS, GET_VEHICLES, GET_FILMS, SEARCH_ITEMS  } from "./actions";
 
 const initialState = {
   people: [],
@@ -8,14 +8,29 @@ const initialState = {
   peopleId: [],
   total: 0,
   loading: true,
+  searchResults: {
+    planets: [],
+    people: [],
+    vehicles: [],
+    films: []
+  },
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case SEARCH_ITEMS:
+      const { prop, result } = action.payload;
+      return {
+        ...state,
+        searchResults: {
+          ...state.searchResults,
+          [prop]: result,
+        },
+      };
     case GET_PEOPLE:
       return {
         ...state,
-        people: action.payload
+        people: action.payload,
       };
     case GET_FILMS:
       return { ...state, films: action.payload };
@@ -27,5 +42,6 @@ const rootReducer = (state = initialState, action) => {
       return { ...state };
   }
 };
+
 
 export default rootReducer;
