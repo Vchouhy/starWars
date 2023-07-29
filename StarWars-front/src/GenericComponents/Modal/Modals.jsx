@@ -19,13 +19,18 @@ const Modals = ({ children, isOpen, closeModal }) => {
         {isFilm && (
           <div>
             <h3>{children.title}</h3>
+            <p>Episode: {children.episode_id}</p>
             <p>Director: {children.director}</p>
             <p>Opening Crawl: {children.opening_crawl}</p>
             <p>Release Date: {children.release_date}</p>
             <p>Characters: {children.characters.join(", ")}</p>
+            <p>Release Date: {children.release_date}</p>
+            <p>Producer: {children.producer}</p>
+            <p>Species: {children.species?.join(", ")}</p>
             <p>Planets: {children.planets.join(", ")}</p>
             <p>Starships: {children.starships.join(", ")}</p>
             <p>Vehicles: {children.vehicles.join(", ")}</p>
+            <p>Characters: {children.characters.join(", ")}</p>
           </div>
         )}
         {isPerson && (
@@ -37,7 +42,10 @@ const Modals = ({ children, isOpen, closeModal }) => {
             <p>Hair Color: {children.hair_color}</p>
             <p>Height: {children.height}</p>
             <p>Mass: {children.mass}</p>
+            <p>Skin Color: {children.skin_color}</p>
             <p>Homeworld: {children.homeworld}</p>
+            <p>Films: {children.films.join(", ")}</p>
+            <p>Species: {children.species}</p>
             <p>Starships: {children.starships?.join(", ")}</p>
             <p>Vehicles: {children.vehicles?.join(", ")}</p>
           </div>
@@ -56,6 +64,7 @@ const Modals = ({ children, isOpen, closeModal }) => {
             <p>Films: {children.films.join(", ")}</p>
             <p>Residents: {children.residents.join(", ")}</p>
           </div>
+
         )}
         {isVehicle && (
           <div>
@@ -70,6 +79,9 @@ const Modals = ({ children, isOpen, closeModal }) => {
             <p>Passengers: {children.passengers}</p>
             <p>Pilots: {children.pilots.join(", ")}</p>
             <p>Vehicle Class: {children.vehicle_class}</p>
+            <p>Max Atmospher Speed: {children.max_atmosphering_speed}</p>
+            <p>Films: {children.films.join(", ")}</p>
+
           </div>
         )}
       </div>

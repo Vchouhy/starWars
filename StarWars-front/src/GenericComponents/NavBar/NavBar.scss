@@ -1,8 +1,48 @@
-.main-container{
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500&display=swap');
+
+.navbar-main-container{
     display: flex;
     justify-content: space-around;
+    height: 3rem;
+    width: 100vw;
+    font-size: 2rem;
+    font-family: 'Chakra Petch', sans-serif;
+    margin-top: 2rem;
 }
 
-.link{
-    text-decoration: none;
+.link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15vw;
+  text-decoration: none;
+  color: rgb(128, 128, 10);
+  background: transparent;
+  border: solid 3px rgb(128, 128, 10);
+  border-radius: 5px;
+
+
+
+  --b: 0.1em;
+  /* the thickness of the line */
+  --c: rgb(128, 128, 10);
+  /* the color */
+
+  color: rgb(128, 128, 10);
+  padding-block: var(--b);
+  background: linear-gradient(var(--c) 50%, #000 0) 0% calc(100% - var(--_p, 0%))/100% 200%, linear-gradient(var(--c) 0 0) 0% var(--_p, 0%)/var(--_p, 0%) var(--b) no-repeat;
+  -webkit-background-clip: text, padding-box;
+  background-clip: text, padding-box;
+  transition: .3s var(--_s, 0s) linear, background-size .3s calc(.3s - var(--_s, 0s));
+
+  // border: solid rgb(128, 128, 10) 1px;
+  // border-radius: 5px;
+  padding: 0.25rem;
+}
+.link:hover {
+  border-bottom: none;
+
+  --_p: 100%;
+  --_s: .3s;
+
 }

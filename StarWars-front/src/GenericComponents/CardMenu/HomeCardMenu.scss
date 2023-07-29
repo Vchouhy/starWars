@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500&display=swap');
+
+.main-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.card{
+    border: solid 3px rgb(128, 128, 10);
+    border-radius: 5px;
+    height: 8rem;
+    width: 12rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    font-family: 'Chakra Petch', sans-serif;
+    text-decoration: none;
+    color: white;
+    
+}
+
+.card:hover{
+    transform: scale(1.5);
+}

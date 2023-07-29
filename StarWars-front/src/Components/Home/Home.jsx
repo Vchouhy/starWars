@@ -9,7 +9,6 @@ const Home = ()=>{
   const people = useSelector((state) => state.people);
   const vehicles = useSelector((state) => state.vehicles);
 
-//   console.log('home',people[0])
     const dispatch = useDispatch();
 
     useEffect(()=>{
@@ -20,14 +19,16 @@ const Home = ()=>{
     },[dispatch])
 
     return(
-        <div>
+        <div className="home-container">
+            <div>
 {       ( people.length === 0 && vehicles.length === 0) ?
          <>
          <h1 >Loading...</h1>
         </> :
-        <div className="sky">
+        <div>
             <HomeCardMenu/>
         </div> }
+            </div>
         </div>
     )
 }

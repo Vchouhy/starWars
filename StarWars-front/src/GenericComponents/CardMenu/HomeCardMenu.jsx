@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import './CardMenu.scss'
+import './HomeCardMenu.scss'
 
 const HomeCardMenu = () =>{
 

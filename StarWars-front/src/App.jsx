@@ -1,6 +1,7 @@
 import { Home, Landing, Contact, People, Planets, Films, Vehicles } from './Components';
 import { Route, withRouter } from 'react-router-dom';
 import NavBar from './GenericComponents/NavBar/NavBar';
+import "./App.scss";
 
 
 function App({ location }) {
@@ -10,7 +11,7 @@ function App({ location }) {
   const shouldShowNavBar = showNavBarRoutes.includes(location.pathname);
 
   return (
-    <div className="App" >
+    <div className="App estrellas" >
       {shouldShowNavBar && <NavBar />}
 
       <Route exact path="/" component={Landing} />

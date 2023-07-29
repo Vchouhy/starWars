@@ -34,7 +34,7 @@ const Pagination = ({ propPerPage, length, pagination, currentPage }) => {
       if (currentPage > Math.ceil(visiblePages / 2) + 2) {
         pageNumbers.push(
           <li key="dots1">
-            <span>...</span>
+            <span className="dots">...</span>
           </li>
         );
       }
@@ -63,7 +63,7 @@ const Pagination = ({ propPerPage, length, pagination, currentPage }) => {
       if (currentPage < pageNumber.length - Math.ceil(visiblePages / 2) - 1) {
         pageNumbers.push(
           <li key="dots2">
-            <span>...</span>
+            <span className="dots">...</span>
           </li>
         );
       }
