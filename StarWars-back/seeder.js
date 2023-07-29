@@ -3,6 +3,8 @@ const Person = require('./components/people/model');
 const Film = require('./components/films/model');
 const Vehicle = require('./components/vehicles/model');
 const Planet = require('./components/planets/model');
+const Species = require('./components/species/model');
+const Starship = require('./components/starships/model');
 
 const seedData = async () => {
   try {
@@ -24,6 +26,14 @@ const seedData = async () => {
     const allPlanets = await getAllResults('https://swapi.dev/api/planets/');
     for (const planetData of allPlanets) {
       await Planet.findOneAndUpdate({ url: planetData.url }, planetData, { upsert: true });
+    }
+    const allSpecies = await getAllResults('https://swapi.dev/api/species/');
+    for (const speciesData of allSpecies) {
+      await Species.findOneAndUpdate({ url: speciesData.url }, speciesData, { upsert: true });
+    }
+    const allStarships = await getAllResults('https://swapi.dev/api/starships/');
+    for (const starshipData of allStarships) {
+      await Starship.findOneAndUpdate({ url: starshipData.url }, starshipData, { upsert: true });
     }
   } catch (error) {
     console.error('Error al obtener datos de Star Wars:', error.message);

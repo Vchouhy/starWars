@@ -26,18 +26,6 @@ const search = async (search) => {
   }
 };
 
-// const getById = async (id) => {
-//   try {
-//     const ObjectId = mongoose.Types.ObjectId;
-//     const objectId = new ObjectId(id); 
-//     let aggregate = { $match: { _id: objectId } };
-//     pipeline.unshift(aggregate); 
-//     const person = await Person.aggregate(pipeline);
-//     return person;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// // };
 
 const pipeline = [
     {

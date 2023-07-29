@@ -12,7 +12,6 @@ const getVehiclesFromDB = async (req, res, next) => {
 
 const search = async (req, res, next) =>{
     try{
-      console.log(req.query)
       res.send(await controller.search({
         search: req.query.search
       }))
