@@ -7,6 +7,7 @@ export const GET_FILMS = "GET_FILMS"
 export const PEOPLE_ID = "PEOPLE_ID"
 export const SEARCH_ITEMS = "SEARCH_ITEMS"
 export const ORDER_ASC_DES = 'ORDER_ASC_DES'
+export const GET_ALL_DATA = "GET_ALL_DATA"
 
 //Section PEOPLE
 
@@ -71,4 +72,26 @@ export const searchItems = (searchQuery, prop) => {
   };
 };
 
+export const getAllData = () => {
+  return async function (dispatch) {
+    try {
+      const [peopleData, planetsData, vehiclesData, filmsData] = await Promise.all([
+        axios.get("http://localhost:5001/people"),
+        axios.get("http://localhost:5001/planets"),
+        axios.get("http://localhost:5001/vehicles"),
+        axios.get("http://localhost:5001/films"),
+      ]);
 
+      const allData = {
+        people: peopleData.data,
+        planets: planetsData.data,
+        vehicles: vehiclesData.data,
+        films: filmsData.data,
+      };
+
+      dispatch({ type: GET_ALL_DATA, payload: allData });
+    } catch (error) {
+      console.log("Error", error);
+    }
+  };
+};

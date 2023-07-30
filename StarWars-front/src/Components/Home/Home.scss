@@ -1,42 +1,66 @@
-.home-container{
-  position:absolute;
-  top:15rem;
-  left:0;
-  right:0;
-  bottom:0;
-  width:100%;
-  height:100%;
-  display:block;
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500&family=Lexend:wght@300&display=swap');
+
+
+.home-container {
+  /* Ajusta la altura de la pantalla de acuerdo a tus necesidades */
+  height: fit-content;
+  /* Asegura que los elementos dentro del contenedor ocupen toda la altura */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden; /* Para evitar que el contenido se desborde */
 }
 
-.estrellas {
-  position:absolute;
-  top:15rem;
-  left:0;
-  right:0;
-  bottom:0;
-  width:100%;
-  height:100%;
-  display:block;
+.image-background {
+  /* Asegura que la imagen de fondo ocupe la mitad superior de la pantalla */
+  height: 60vh;
+  /* Asegura que la imagen se ajuste al contenedor */
+  background-size: cover;
+  /* Agrega otros estilos deseados para la imagen de fondo */
+  position: relative;
+  z-index: 0; /* Coloca la imagen de fondo detrás de todo */
 }
 
-// body {
-//   background:#000 url(http://1.bp.blogspot.com/-q7NYia_DjQI/U4t7_J4gwwI/AAAAAAAAMKo/nru4YxfjK6I/s1600/estrellas.png) repeat top center;
-// }
+.superposed-image {
+  position: absolute;
+  top: 50%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  height: 30%;
+  z-index: 1;
+}
 
-// .estrellas{
+.black-background {
+  // position: absolute;
+  /* Asegura que el fondo negro ocupe la mitad inferior de la pantalla */
+  height: 50%;
+  /* Define el color de fondo negro */
+  background-color: #000;
+  /* Agrega otros estilos deseados para la mitad inferior */
+  z-index: 0; /* Coloca el fondo negro detrás de todo */
+}
 
-// // display: flex;
-// // flex-direction: column;
-// // justify-content: space-around;
+.content-container {
+  /* Alinea los elementos dentro del contenido en una fila */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3rem; /* Ajusta el espaciado entre el contenido y el fondo negro */
+}
 
-//   background:transparent url(http://3.bp.blogspot.com/-FwB8aSiMBmI/U4t9MkimRrI/AAAAAAAAMK0/FAlqX8ZFyu8/s1600/twinkling.png) repeat top center;
-//   z-index:-2;
+.down-image {
+  /* Ajusta el tamaño y la posición de la imagen */
+  width: 350px;
+  height: 350px;
+}
 
-//   -moz-animation:move-twink-back 100s linear infinite;
-//   -ms-animation:move-twink-back 100s linear infinite;
-//   -o-animation:move-twink-back 100s linear infinite;
-//   -webkit-animation:move-twink-back 100s linear infinite;
-//   animation:move-twink-back 100s linear infinite;
-// }
+.about {
+  /* Ajusta el tamaño del texto y el color */
+  font-family: 'Lexend', sans-serif;
+
+  font-size: 1.25rem;
+  color: #fff;
+  max-width: 60%; /* Ajusta el ancho máximo del párrafo para evitar que se extienda demasiado */
+}
 

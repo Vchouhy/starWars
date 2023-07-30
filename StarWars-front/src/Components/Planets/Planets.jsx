@@ -1,11 +1,12 @@
 import Card from "../../GenericComponents/Card/Card";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Modals from "../../GenericComponents/Modal/Modals";
 import { useModal } from "../../hooks/useModal";
 import React, { useState, useEffect } from "react";
 import Pagination from "../../GenericComponents/Pagination/Pagination";
 import SearchBar from "../../GenericComponents/SearchBar/SerchBar";
 import './Planets.scss'
+import { getAllPlanets } from "../../redux/actions";
 
 const Planets = () => {
   const searchResults = useSelector((state) => state.searchResults.planets);
@@ -19,6 +20,19 @@ const Planets = () => {
   const indexOfLastPlanet = currentPage * planetPerPage;
   const indexOfFirstPlanet = indexOfLastPlanet - planetPerPage;
   const currentPlanet = planetsResults ? planetsResults.slice(indexOfFirstPlanet, indexOfLastPlanet) : planets.slice(indexOfFirstPlanet, indexOfLastPlanet);
+  const [totalPages, setTotalPages] = useState(1);
+
+  const dispatch = useDispatch();
+
+ useEffect(()=>{
+
+    dispatch(getAllPlanets())
+
+},[dispatch])
+
+useEffect(() => {
+  setTotalPages(Math.ceil(searchResults.length / planetPerPage));
+}, [searchResults, planetPerPage]);
 
   const handleOpenModal = (planet) => {
     setselectedPlanet({ ...planet, isPlanet: true }); // Cambiar "isVehicle" a "isPlanet"

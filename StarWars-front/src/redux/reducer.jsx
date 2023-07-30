@@ -1,4 +1,4 @@
-import { GET_PEOPLE, GET_PLANETS, GET_VEHICLES, GET_FILMS, SEARCH_ITEMS, ORDER_ASC_DES  } from "./actions";
+import { GET_PEOPLE, GET_PLANETS, GET_VEHICLES, GET_FILMS, SEARCH_ITEMS, ORDER_ASC_DES, GET_ALL_DATA  } from "./actions";
 
 const initialState = {
   people: [],
@@ -18,6 +18,14 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case GET_ALL_DATA:
+      return {
+        ...state,
+        people: action.payload.people,
+        planets: action.payload.planets,
+        vehicles: action.payload.vehicles,
+        films: action.payload.films,
+      };
     case SEARCH_ITEMS:
       const { prop, result } = action.payload;
       return {

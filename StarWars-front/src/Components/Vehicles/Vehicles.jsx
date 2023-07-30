@@ -1,11 +1,12 @@
 import Card from "../../GenericComponents/Card/Card";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Modals from "../../GenericComponents/Modal/Modals";
 import { useModal } from "../../hooks/useModal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Pagination from "../../GenericComponents/Pagination/Pagination";
 import SearchBar from "../../GenericComponents/SearchBar/SerchBar";
 import './Vehicles.scss'
+import { getAllVehicles } from "../../redux/actions";
 
 const Vehicles = () => {
   const searchResults = useSelector((state) => state.searchResults.vehicles);
@@ -19,6 +20,19 @@ const Vehicles = () => {
   const indexOfLastVehicle = currentPage * vehiclePerPage;
   const indexOfFirstVehicle = indexOfLastVehicle - vehiclePerPage;
   const currentVehicle = vehiclesResults ? vehiclesResults.slice(indexOfFirstVehicle, indexOfLastVehicle) : vehicles.slice(indexOfFirstVehicle, indexOfLastVehicle);
+  const [totalPages, setTotalPages] = useState(1);
+
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+ 
+     dispatch(getAllVehicles())
+ 
+ },[dispatch])
+  
+ useEffect(() => {
+  setTotalPages(Math.ceil(searchResults.length / vehiclePerPage));
+}, [searchResults, vehiclePerPage]);
 
   const handleOpenModal = (vehicle) => {
     setselectedVehicle({ ...vehicle, isVehicle: true });
