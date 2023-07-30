@@ -1,13 +1,29 @@
 import './Card.scss'
-// import '../../../public/Assets';
+// import planetsSVG from './../Assets/planet'
+
+
+const svgMap = {
+  // 'container-planet-card': planetsSVG,
+
+};
+
 
 const Card = (props) => {
+  const cardClassName = `container-${props.type}-card`;
+  const svgToRender = svgMap[cardClassName];
+
   return (
-    <div className="container">
+    <div className={`container ${cardClassName}`}>
+      {svgToRender && (
+        <div className="svg-background">
+          <img src={svgToRender} alt="SVG" />
+        </div>
+      )}
+
       <div>
         <p>{props.name || props.title}</p>
       </div>
-      {/* <img src="StarWars-front/public/Assets/planets1.svg" alt="" /> */}
+
       <div>{props.children}</div>
     </div>
   );
