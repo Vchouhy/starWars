@@ -1,11 +1,12 @@
 import { useSelector, useDispatch } from "react-redux";
-import Card from "../../GenericComponents/Card/Card";
-import Modals from "../../GenericComponents/Modal/Modals";
+import Card from "../GenericComponents/Card/Card";
+import Modals from "../GenericComponents/Modal/Modals";
 import { useModal } from "../../hooks/useModal";
 import { useState, useEffect } from "react";
-import SearchBar from "../../GenericComponents/SearchBar/SerchBar";
-import Pagination from "../../GenericComponents/Pagination/Pagination";
+import SearchBar from "../GenericComponents/SearchBar/SerchBar";
+import Pagination from "../GenericComponents/Pagination/Pagination";
 import { getAllFilms } from "../../redux/actions";
+import './Films.scss'
 
 const Films = () => {
   const searchResults = useSelector((state) => state.searchResults.films);
@@ -56,9 +57,9 @@ const Films = () => {
   };
 
   return (
-    <>
-      <div className="main-container">
+    <div className="estrellas">
         <SearchBar prop="films"></SearchBar>
+      <div className="films-main-container">
         {currentFilm.map((film) => {
           return (
             <Card key={film._id} name={film.title}>
@@ -78,7 +79,7 @@ const Films = () => {
         pagination={pagination}
         currentPage={currentPage}
       />
-    </>
+    </div>
   );
 };
 

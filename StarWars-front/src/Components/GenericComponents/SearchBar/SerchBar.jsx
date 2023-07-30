@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { searchItems } from "../../redux/actions";
+import { searchItems } from "../../../redux/actions";
 import "./SearchBar.scss";
 
 const SearchBar = ({ prop }) => {
@@ -20,7 +20,7 @@ const SearchBar = ({ prop }) => {
         value={searchQuery}
         onChange={(e) => handleSearch(e.target.value)}
         onKeyUp={(e) => handleSearch(e.target.value)}
-        placeholder="Search..." 
+        placeholder="Search by name..." 
       />
  
     </div>

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Card from "../../GenericComponents/Card/Card";
+import Card from "../GenericComponents/Card/Card";
 import { useSelector } from "react-redux";
-import Modals from "../../GenericComponents/Modal/Modals";
+import Modals from "../GenericComponents/Modal/Modals";
 import { useModal } from "../../hooks/useModal";
-import Pagination from "../../GenericComponents/Pagination/Pagination";
-import SearchBar from "../../GenericComponents/SearchBar/SerchBar";
+import Pagination from "../GenericComponents/Pagination/Pagination";
+import SearchBar from "../GenericComponents/SearchBar/SerchBar";
 import "./People.scss";
 import { useDispatch } from "react-redux";
 import { getAllPeople } from "../../redux/actions";
@@ -61,7 +61,7 @@ const People = () => {
   
 
   return (
-    <>
+    <div className="estrellas">
     <div>
         <SearchBar prop="people" />
       <div className="people-main-container">
@@ -85,7 +85,7 @@ const People = () => {
         pagination={pagination}
         currentPage={currentPage}
       />
-    </>
+    </div>
   );
         };
 

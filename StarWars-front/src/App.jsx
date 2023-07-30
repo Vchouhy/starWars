@@ -1,7 +1,6 @@
-import { Home, Landing, Contact, People, Planets, Films, Vehicles } from './Components';
+import { Home, People, Planets, Films, Vehicles } from './Components';
 import { Route, withRouter } from 'react-router-dom';
-import NavBar from './GenericComponents/NavBar/NavBar';
-
+import NavBar from './Components/GenericComponents/NavBar/NavBar'
 
 function App({ location }) {
   // Lista de rutas donde se debe mostrar la NavBar
@@ -20,7 +19,7 @@ function App({ location }) {
 
 <div>
 
-      <Route exact path="/" component={Landing} />
+      <Route exact path="/" component={Home} />
 
       <Route exact path="/home" component={Home} />
       <Route exact path="/people" component={People} />
@@ -30,7 +29,6 @@ function App({ location }) {
 
 
 
-      <Route exact path="/contact" component={Contact} />
 </div>
     </div>
 

@@ -1,10 +1,10 @@
-import Card from "../../GenericComponents/Card/Card";
+import Card from "../GenericComponents/Card/Card";
 import { useSelector, useDispatch } from 'react-redux';
-import Modals from "../../GenericComponents/Modal/Modals";
+import Modals from "../GenericComponents/Modal/Modals";
 import { useModal } from "../../hooks/useModal";
 import { useState, useEffect } from "react";
-import Pagination from "../../GenericComponents/Pagination/Pagination";
-import SearchBar from "../../GenericComponents/SearchBar/SerchBar";
+import Pagination from "../GenericComponents/Pagination/Pagination";
+import SearchBar from "../GenericComponents/SearchBar/SerchBar";
 import './Vehicles.scss'
 import { getAllVehicles } from "../../redux/actions";
 
@@ -44,7 +44,7 @@ const Vehicles = () => {
   };
 
   return (
-    <>
+    <div className="estrellas">
       <SearchBar prop='vehicles' />
       <div className="vehicles-main-container">
         {currentVehicle.map((vehicle) => {
@@ -61,7 +61,7 @@ const Vehicles = () => {
         )}
       </div>
       <Pagination propPerPage={vehiclePerPage} length={vehicles.length} pagination={pagination} currentPage={currentPage} />
-    </>
+    </div>
   );
 };
 

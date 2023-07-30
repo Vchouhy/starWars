@@ -1,10 +1,10 @@
-import Card from "../../GenericComponents/Card/Card";
+import Card from "../GenericComponents/Card/Card";
 import { useSelector, useDispatch } from "react-redux";
-import Modals from "../../GenericComponents/Modal/Modals";
+import Modals from "../GenericComponents/Modal/Modals";
 import { useModal } from "../../hooks/useModal";
 import React, { useState, useEffect } from "react";
-import Pagination from "../../GenericComponents/Pagination/Pagination";
-import SearchBar from "../../GenericComponents/SearchBar/SerchBar";
+import Pagination from "../GenericComponents/Pagination/Pagination";
+import SearchBar from "../GenericComponents/SearchBar/SerchBar";
 import './Planets.scss'
 import { getAllPlanets } from "../../redux/actions";
 
@@ -44,12 +44,12 @@ useEffect(() => {
   };
 
   return (
-    <>
+    <div className="estrellas">
         <SearchBar prop="planets"></SearchBar>
       <div className="planet-main-container">
         {currentPlanet.map((planet) => {
           return (
-            <Card key={planet._id} name={planet.name}>
+            <Card key={planet._id} name={planet.name} type={'planet'}>
               <button onClick={() => handleOpenModal(planet)}>
                 OpenDetail
               </button>
@@ -68,7 +68,7 @@ useEffect(() => {
         pagination={pagination}
         currentPage={currentPage}
       />
-    </>
+    </div>
   );
 };
 
