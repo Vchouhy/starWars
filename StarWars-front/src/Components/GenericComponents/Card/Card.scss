@@ -1,50 +1,46 @@
-@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500&display=swap");
 
-.container{
-    font-family: 'Chakra Petch', sans-serif;
-
-    border: solid rgb(128, 128, 10) 1px;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 10rem;
-    height: 10rem;
-    margin: 1rem;
-    padding: 1rem;
-    background-color: rgba(255, 255, 255, 0.35);
-    
+.container {
+  font-family: "Chakra Petch", sans-serif;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 15rem;
+  height: 11rem;
+  margin: 1rem;
+  padding: 1rem;
+  color: white;
+  border: solid #f4d002eb;
+  border-radius: 1rem;
 }
 
-
-button{
-    font-family: 'Chakra Petch', sans-serif;
-
-    --b: 0.1em;   /* the thickness of the line */
-    --c: rgb(128, 128, 10); /* the color */
-    
-    color: #0000;
-    padding-block: var(--b);
-    background: 
-    linear-gradient(var(--c) 50%,#000 0) 0% calc(100% - var(--_p,0%))/100% 200%,
-    linear-gradient(var(--c) 0 0) 0% var(--_p,0%)/var(--_p,0%) var(--b) no-repeat;
-    -webkit-background-clip: text,padding-box;
-    background-clip: text,padding-box;
-    transition: .3s var(--_s,0s) linear,background-size .3s calc(.3s - var(--_s,0s));
-    
-    border: solid rgb(128, 128, 10) 1px;
-    border-radius: 5px;
-    padding: 0.25rem;
+button {
+  font-family: "Chakra Petch", sans-serif;
+  --b: 0.1em; /* the thickness of the line */
+  --c: #f4d002eb; /* the color */
+  color: white;
+  padding-block: var(--b);
+  background: linear-gradient(var(--c) 50%, #000 0) 0%
+    calc(100% - var(--_p, 0%)) / 100% 200%,
+    linear-gradient(var(--c) 0 0) 0% var(--_p, 0%) / var(--_p, 0%) var(--b)
+    no-repeat;
+  -webkit-background-clip: text, padding-box;
+  background-clip: text, padding-box;
+  transition: 0.3s var(--_s, 0s) linear,
+  background-size 0.3s calc(0.3s - var(--_s, 0s));
+  border: solid #f4d002eb;
+  border-radius: 5px;
+  padding: 0.25rem;
 }
 button:hover {
-    border-bottom: none;
-
-    --_p: 100%;
-    --_s: .3s;
-
+  border-bottom: none;
+  --_p: 100%;
+  --_s: 0.3s;
 }
 
-.card-people{
+.card-svg {
+  height: 60px;
+  width: 60px;
 }

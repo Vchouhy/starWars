@@ -2,23 +2,18 @@
 
 
 .home-container {
-  /* Ajusta la altura de la pantalla de acuerdo a tus necesidades */
   height: fit-content;
-  /* Asegura que los elementos dentro del contenedor ocupen toda la altura */
   display: flex;
   flex-direction: column;
   position: relative;
-  overflow: hidden; /* Para evitar que el contenido se desborde */
+  overflow: hidden; 
 }
 
 .image-background {
-  /* Asegura que la imagen de fondo ocupe la mitad superior de la pantalla */
   height: 60vh;
-  /* Asegura que la imagen se ajuste al contenedor */
   background-size: cover;
-  /* Agrega otros estilos deseados para la imagen de fondo */
   position: relative;
-  z-index: 0; /* Coloca la imagen de fondo detrás de todo */
+  z-index: 0; 
 }
 
 .superposed-image {
@@ -32,35 +27,89 @@
 }
 
 .black-background {
-  // position: absolute;
-  /* Asegura que el fondo negro ocupe la mitad inferior de la pantalla */
   height: 50%;
-  /* Define el color de fondo negro */
   background-color: #000;
-  /* Agrega otros estilos deseados para la mitad inferior */
   z-index: 0; /* Coloca el fondo negro detrás de todo */
 }
 
 .content-container {
-  /* Alinea los elementos dentro del contenido en una fila */
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 3rem; /* Ajusta el espaciado entre el contenido y el fondo negro */
+  padding: 3rem; 
 }
 
 .down-image {
-  /* Ajusta el tamaño y la posición de la imagen */
   width: 350px;
   height: 350px;
 }
 
 .about {
-  /* Ajusta el tamaño del texto y el color */
   font-family: 'Lexend', sans-serif;
 
   font-size: 1.25rem;
-  color: #fff;
-  max-width: 60%; /* Ajusta el ancho máximo del párrafo para evitar que se extienda demasiado */
+  color: #f4d002eb;
+  max-width: 60%; 
 }
 
+
+
+/* Estilos para pantallas más pequeñas */
+@media screen and (max-width: 768px) {
+  .image-background {
+    height: 40vh;
+  }
+
+  .superposed-image {
+    width: 55%;
+    height: 20%;
+  }
+
+  .black-background {
+    height: 60%;
+  }
+
+  .content-container {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .about {
+    font-size: 1rem;
+    max-width: 100%;
+  }
+
+  .down-image {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+/* Estilos para pantallas más grandes */
+@media screen and (min-width: 1024px) {
+  .image-background {
+    height: 70vh;
+  }
+
+  .superposed-image {
+    width: 30%;
+    height: 25%;
+  }
+
+  .black-background {
+    height: 40%;
+  }
+
+  .content-container {
+    padding: 5rem;
+  }
+
+  .about {
+    font-size: 1.5rem;
+  }
+
+  .down-image {
+    width: 500px;
+    height: 500px;
+  }
+}

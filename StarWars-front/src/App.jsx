@@ -1,38 +1,34 @@
-import { Home, People, Planets, Films, Vehicles } from './Components';
-import { Route, withRouter } from 'react-router-dom';
-import NavBar from './Components/GenericComponents/NavBar/NavBar'
+import { Home, People, Planets, Films, Vehicles } from "./Components";
+import { Route, withRouter, Switch } from "react-router-dom";
+import NavBar from "./Components/GenericComponents/NavBar/NavBar";
+import NotFound from "./Components/GenericComponents/NotFound/NotFound";
 
 function App({ location }) {
   // Lista de rutas donde se debe mostrar la NavBar
-  const showNavBarRoutes = ['/people', '/planets', '/films', '/vehicles'];
+  const showNavBarRoutes = ["/people", "/planets", "/films", "/vehicles"];
 
   const shouldShowNavBar = showNavBarRoutes.includes(location.pathname);
 
-  return (
-    <div className='App'>
+return (
+  <div className="App">
 
-    <div  >
+    <div>{shouldShowNavBar && <NavBar />}</div>
 
-      {shouldShowNavBar && <NavBar />}
-    </div>
-    {/* <div/> */}
-
-<div>
-
-      <Route exact path="/" component={Home} />
-
-      <Route exact path="/home" component={Home} />
-      <Route exact path="/people" component={People} />
-      <Route exact path="/planets" component={Planets} />
-      <Route exact path="/films" component={Films} />
-      <Route exact path="/vehicles" component={Vehicles} />
-
-
-
-</div>
+    <div>
+    <Switch>
+ 
+        <Route exact path="/" component={Home} />
+        <Route exact path="/home" component={Home} />
+        <Route  path="/people" component={People} />
+        <Route  path="/planets" component={Planets} />
+        <Route  path="/films" component={Films} />
+        <Route  path="/vehicles" component={Vehicles} />
+        <Route path="*" component={NotFound} />
+    </Switch>
     </div>
 
-  );
+  </div>
+);
 }
 
 export default withRouter(App);

@@ -8,6 +8,7 @@ export const PEOPLE_ID = "PEOPLE_ID"
 export const SEARCH_ITEMS = "SEARCH_ITEMS"
 export const ORDER_ASC_DES = 'ORDER_ASC_DES'
 export const GET_ALL_DATA = "GET_ALL_DATA"
+export const RESET_SEARCH_RESULTS = "RESET_SEARCH_RESULTS"
 
 //Section PEOPLE
 
@@ -63,12 +64,24 @@ export const getAllFilms = () => {
 };
 
 //Section GRAL
+export const resetSearchResults = () => {
+  return {
+    type: RESET_SEARCH_RESULTS
+  };
+};
 
 export const searchItems = (searchQuery, prop) => {
+  console.log(searchQuery)
   return async function (dispatch) {
+    if (!prop) {
+      // Si prop es undefined, asigna los valores iniciales del estado a hasResults
+      dispatch(resetSearchResults());
+      return;
+    }
     const apiData = await axios.get(`http://localhost:5001/${prop}/search?search=${searchQuery}`);
     const result = apiData.data;
-    dispatch({ type: SEARCH_ITEMS, payload: { prop, result } });
+    const hasResults = result.length > 0 ? result : null;
+    dispatch({ type: SEARCH_ITEMS, payload: { prop, hasResults } });
   };
 };
 

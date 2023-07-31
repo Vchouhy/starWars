@@ -10,22 +10,21 @@
   
   // Normalización de estilos de input
   input {
-    font-family: 'Chakra Petch', sans-serif;
-    font-size: inherit;
+    font-family: 'Lexend', sans-serif ;
+    font-size: 300 !important;
     line-height: inherit;
-    color: inherit;
+    color: white;
     background: transparent;
     border: 1px solid #ccc;
     border-radius: 4px;
     padding: 8px;
     width: 30vw;
-    transition: border-color 0.2s ease;
+    transition: border-color 0.2s ease; 
+    margin-right: 1rem;
   
     &:focus {
       outline: none;
       border: 2px solid rgb(128, 128, 10);
-      // border-color: solid rgb(128, 128, 10) 10px;
-      // background-color:white ;
       color: white;
     }
     
@@ -38,6 +37,7 @@
      justify-content: center;
      margin-top: 3rem;
      border-color: solid rgb(128, 128, 10) 5px;
-
+     font-family: 'Lexend', sans-serif ;
+     font-weight: 300 !important;
  } 
 

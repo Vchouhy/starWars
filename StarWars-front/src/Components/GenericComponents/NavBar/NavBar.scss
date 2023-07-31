@@ -38,3 +38,17 @@
   --_s: .3s;
 
 }
+
+
+/* Estilos para pantallas más pequeñas */
+@media screen and (max-width: 768px) {
+  .navbar-main-container{
+    width: max-content;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .navbar-main-container{
+    width: auto;
+  }
+}

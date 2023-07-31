@@ -1,4 +1,4 @@
-import { GET_PEOPLE, GET_PLANETS, GET_VEHICLES, GET_FILMS, SEARCH_ITEMS, ORDER_ASC_DES, GET_ALL_DATA  } from "./actions";
+import { GET_PEOPLE, GET_PLANETS, GET_VEHICLES, GET_FILMS, SEARCH_ITEMS, ORDER_ASC_DES, GET_ALL_DATA,RESET_SEARCH_RESULTS  } from "./actions";
 
 const initialState = {
   people: [],
@@ -27,13 +27,18 @@ const rootReducer = (state = initialState, action) => {
         films: action.payload.films,
       };
     case SEARCH_ITEMS:
-      const { prop, result } = action.payload;
+      const { prop, hasResults } = action.payload;
       return {
         ...state,
         searchResults: {
           ...state.searchResults,
-          [prop]: result,
+          [prop]: hasResults,
         },
+      };
+      case RESET_SEARCH_RESULTS:
+      return {
+        ...state,
+        searchResults: initialState.searchResults,
       };
     case GET_PEOPLE:
       return {

@@ -1,92 +1,113 @@
 import React, { useState, useEffect } from "react";
 import Card from "../GenericComponents/Card/Card";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Modals from "../GenericComponents/Modal/Modals";
 import { useModal } from "../../hooks/useModal";
 import Pagination from "../GenericComponents/Pagination/Pagination";
-import SearchBar from "../GenericComponents/SearchBar/SerchBar";
+import SearchBar from "../GenericComponents/SearchBar/SearchBar";
 import "./People.scss";
-import { useDispatch } from "react-redux";
-import { getAllPeople } from "../../redux/actions";
+import { getAllPeople, searchItems, resetSearchResults } from "../../redux/actions";
 
 const People = () => {
   const searchResults = useSelector((state) => state.searchResults.people);
   const people = useSelector((state) => state.people);
-  let peopleResults = '';
 
   const [selectedPerson, setselectedPerson] = useState(null);
   const [isOpenModal, openModal, closeModal] = useModal(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [personPerPage, setPersonPerPage] = useState(14);
+  const [personPerPage, setPersonPerPage] = useState(10);
   const [hasSearchResults, setHasSearchResults] = useState(false);
-  const [currentPerson, setCurrentPerson] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
+  const indexOfLastPerson = currentPage * personPerPage;
+  const indexOfFirstPerson = indexOfLastPerson - personPerPage 
+  const currentPerson = people.slice(indexOfFirstPerson, indexOfLastPerson)
+  const [searchQuery, setSearchQuery] = useState("");
 
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllPeople());
+    return () => {
+      dispatch(resetSearchResults());
+    };
   }, [dispatch]);
 
-  useEffect(() => {
-    setTotalPages(Math.ceil(searchResults.length / personPerPage));
-  }, [searchResults, personPerPage]);
-  
-
-  useEffect(() => {
-    const indexOfLastPerson = currentPage * personPerPage;
-    const indexOfFirstPerson = indexOfLastPerson - personPerPage;
-    if (hasSearchResults && searchResults) {
-      setCurrentPerson(searchResults.slice(indexOfFirstPerson, indexOfLastPerson));
-    } else {
-      setCurrentPerson(people.slice(indexOfFirstPerson, indexOfLastPerson));
-    }
-  }, [hasSearchResults, currentPage, personPerPage, people, searchResults]);
-
-  useEffect(() => {
-    setHasSearchResults(searchResults && searchResults.length > 0);
-    setCurrentPage(1);
-  }, [searchResults]);
-
   const handleOpenModal = (person) => {
-    setselectedPerson({ ...person, isPerson: true,  });
+    setselectedPerson({ ...person, isPerson: true });
     openModal();
   };
 
-  const pagination = (pageNumber) => {
-    setCurrentPage(pageNumber);
+  const pagination = (pageNumber)=>{
+    setCurrentPage(pageNumber)
+    setPersonPerPage(personPerPage)
+  }
+
+  const handleSearch = (searchQuery) => {
+    dispatch(searchItems(searchQuery, "planets"));
   };
 
-  
+  useEffect(() => {
+    setHasSearchResults(searchResults !== null && searchResults.length > 0);
+  }, [searchResults]);
 
-  return (
-    <div className="estrellas">
-    <div>
-        <SearchBar prop="people" />
-      <div className="people-main-container">
-        {currentPerson.map((person) => {
-          return (
-            <Card key={person._id} name={person.name} className="card-people">
-              <button onClick={() => handleOpenModal(person)}>OpenDetail</button>
-            </Card>
-          );
-        })}
-        {isOpenModal && selectedPerson && (
-          <Modals isOpen={isOpenModal} closeModal={closeModal}>
-            {selectedPerson}
-          </Modals>
-        )}
+
+
+  // let dataToRender;
+  // if (searchResults !== null && searchResults.length > 0) {
+  //   dataToRender = searchResults;
+  // } else if (searchResults !== null && searchResults.length === 0) {
+  //   dataToRender = currentPerson;
+  // } else if (searchResults?.length === 0){
+  //   dataToRender = [];
+  // }
+
+  let dataToRender;
+  if (searchResults !== null && searchResults.length > 0) {
+    dataToRender = searchResults;
+  } else if (searchResults !== null && searchResults.length === 0) {
+    dataToRender = currentPerson;
+  } else if (searchResults?.length === 0){
+    dataToRender = [];
+  }
+
+
+
+    return (
+    <div className="estrellas ">
+      <div className={`${isOpenModal ? "blur-background" : ""}`}>
+        <SearchBar onSearch={handleSearch}>{'people'}</SearchBar>
+        <div className="people-main-container">
+        {dataToRender?.length > 0 ? (
+            // Si dataToRender tiene elementos, mostrar los resultados
+            dataToRender.map((person) => (
+              <div key={person._id} onClick={() => handleOpenModal(person)}>
+                <Card name={person.name} type={"person"}>
+                  <button>OpenDetail</button>
+                </Card>
+              </div>
+            ))
+          ) : (
+            // Si dataToRender está vacío, mostrar el mensaje de "No films found."
+            <p className="no-search-results">
+              The Force is not strong with your search. <br/> No matching characters found
+            </p>
+          )}
+        </div>
       </div>
-    </div>
+      {isOpenModal && selectedPerson && (
+        <Modals isOpen={isOpenModal} closeModal={closeModal}>
+          {selectedPerson}
+        </Modals>
+      )}
       <Pagination
         propPerPage={personPerPage}
-        length={hasSearchResults ? searchResults.length : people.length}
+        length={(searchResults !== null && searchResults.length > 0) ? searchResults.length : people.length}
         pagination={pagination}
         currentPage={currentPage}
       />
     </div>
   );
-        };
+};
 
 export default People;

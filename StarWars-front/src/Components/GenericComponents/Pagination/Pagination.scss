@@ -38,3 +38,24 @@
     font-size: x-large;
   }
 }
+
+
+/* Estilos para pantallas más pequeñas */
+@media screen and (max-width: 768px) {
+  .paginator{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    align-items: flex-end;
+    margin-top: 3rem;
+    flex-wrap: nowrap;
+    margin-left: 1rem;
+    width: max-content;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .navbar-main-container{
+    width: max-content;
+  }
+}
