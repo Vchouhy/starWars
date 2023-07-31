@@ -9,8 +9,7 @@ import Frase from '../GenericComponents/Assets/frase1.png'
 
 const Home = ()=>{
 
-  const people = useSelector((state) => state.people);
-  const vehicles = useSelector((state) => state.vehicles);
+ 
 
     const dispatch = useDispatch();
 
@@ -28,15 +27,11 @@ const Home = ()=>{
             <img src={Frase} alt="SuperposedImage" className="superposed-image" />
           </div>
           <div className="black-background">
-            {people.length === 0 && vehicles.length === 0 ? (
-              <>
-                <h1>Loading...</h1>
-              </>
-            ) : (
+          
               <div>
                 <HomeCardMenu />
               </div>
-            )}
+            
           <div className="content-container" id="content-container">
       <p className="about">
         Welcome to the world of Star Wars, an epic science fiction saga set in a galaxy far, far away. Discover the captivating details of characters, planets, vehicles, and films in this legendary universe. On this website, you'll find comprehensive data on your favorite Star Wars characters like Luke Skywalker, Darth Vader, and Princess Leia, as well as fascinating information about planets like Tatooine and Hoth. Explore the iconic vehicles like the Millennium Falcon and X-Wing fighters, and delve into the thrilling films that have become cultural classics. May the Force be with you as you embark on this exciting Star Wars journey!

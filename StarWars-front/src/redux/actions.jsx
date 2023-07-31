@@ -16,7 +16,7 @@ export const getAllPeople = () => {
    return async function (dispatch) {
      try {
        const apiData = await axios.get(
-         `http://localhost:5001/people`
+         `/people`
        );
       const peopleData = apiData.data;
       dispatch({ type: GET_PEOPLE, payload: peopleData });
@@ -31,7 +31,7 @@ export const getAllPeople = () => {
 //Section PLANETS
 export const getAllPlanets = () => {
    return async function(dispatch){
-    const apiData = await axios.get("http://localhost:5001/planets")
+    const apiData = await axios.get("/planets")
     
     const planets = apiData.data;
 
@@ -43,7 +43,7 @@ export const getAllPlanets = () => {
 //Section VEHICLES
 export const getAllVehicles = () => {
    return async function(dispatch){
-    const apiData = await axios.get("http://localhost:5001/vehicles")
+    const apiData = await axios.get("/vehicles")
     
     const user = apiData.data;
 
@@ -55,7 +55,7 @@ export const getAllVehicles = () => {
 //Section FILMS
 export const getAllFilms = () => {
    return async function(dispatch){
-    const apiData = await axios.get("http://localhost:5001/films")
+    const apiData = await axios.get("/films")
     
     const user = apiData.data;
 
@@ -77,7 +77,7 @@ export const searchItems = (searchQuery, prop) => {
       dispatch(resetSearchResults());
       return;
     }
-    const apiData = await axios.get(`http://localhost:5001/${prop}/search?search=${searchQuery}`);
+    const apiData = await axios.get(`/${prop}/search?search=${searchQuery}`);
     const result = apiData.data;
     const hasResults = result.length > 0 ? result : null;
     dispatch({ type: SEARCH_ITEMS, payload: { prop, hasResults } });
@@ -88,10 +88,10 @@ export const getAllData = () => {
   return async function (dispatch) {
     try {
       const [peopleData, planetsData, vehiclesData, filmsData] = await Promise.all([
-        axios.get("http://localhost:5001/people"),
-        axios.get("http://localhost:5001/planets"),
-        axios.get("http://localhost:5001/vehicles"),
-        axios.get("http://localhost:5001/films"),
+        axios.get("/people"),
+        axios.get("/planets"),
+        axios.get("/vehicles"),
+        axios.get("/films"),
       ]);
 
       const allData = {

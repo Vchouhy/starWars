@@ -2,6 +2,8 @@ import { Home, People, Planets, Films, Vehicles } from "./Components";
 import { Route, withRouter, Switch } from "react-router-dom";
 import NavBar from "./Components/GenericComponents/NavBar/NavBar";
 import NotFound from "./Components/GenericComponents/NotFound/NotFound";
+import axios from 'axios';
+axios.defaults.baseURL = 'http://localhost:5001';
 
 function App({ location }) {
   // Lista de rutas donde se debe mostrar la NavBar
