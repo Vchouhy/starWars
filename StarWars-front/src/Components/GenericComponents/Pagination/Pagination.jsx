@@ -3,6 +3,7 @@ import './Pagination.scss';
 
 const Pagination = ({ propPerPage, length, pagination, currentPage }) => {
   const pageNumber = [];
+
   for (let i = 1; i <= Math.ceil(length / propPerPage); i++) {
     pageNumber.push(i);
   }
@@ -19,15 +20,13 @@ const Pagination = ({ propPerPage, length, pagination, currentPage }) => {
         </li>
       );
     }
-    console.log(pageNumbers)
+    
     return pageNumbers;
   };
   
   return (
     <div>
-      {pageNumber.length > 0 && (
-        <ul className="paginator">{renderPageNumbers()}</ul>
-      )}
+      <ul className="paginator">{renderPageNumbers()}</ul>
     </div>
   );
 };

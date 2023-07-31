@@ -1,37 +1,3 @@
-// import React, { useState } from "react";
-// import { useDispatch } from "react-redux";
-// import { searchItems } from "../../../redux/actions";
-// import "./SearchBar.scss";
-
-// const SearchBar = ({ prop }) => {
-//   const dispatch = useDispatch();
-//   const [searchQuery, setSearchQuery] = useState("");
-//   const [hasSearchResults, setHasSearchResults] = useState(false); 
-
-//   const handleSearch = (value) => {
-//     setSearchQuery(value);
-//     const trimmedQuery = value.trim();
-//     dispatch(searchItems(trimmedQuery, prop));
-//     setHasSearchResults(trimmedQuery.length > 0); // Update the hasSearchResults state based on search query
-//   };
-
-//   return (
-//     <div className="search-bar-container">
-//       <input
-//         type="text"
-//         value={searchQuery}
-//         onChange={(e) => handleSearch(e.target.value)}
-//         onKeyUp={(e) => handleSearch(e.target.value)}
-//         placeholder="Search by name..." 
-//       />
- 
-//     </div>
-//   );
-// };
-
-// export default SearchBar;
-// SearchBar.js
-
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import "./SearchBar.scss";

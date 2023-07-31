@@ -40,11 +40,12 @@ const Films = () => {
 
   const pagination = (pageNumber)=>{
     setCurrentPage(pageNumber)
-    setFilmPerPage(filmPerPage)
   }
  
   const handleSearch = (searchQuery) => {
     dispatch(searchItems(searchQuery, "films"));
+    setCurrentPage(1);
+
   };
 
   useEffect(() => {
@@ -54,7 +55,7 @@ const Films = () => {
   
   let dataToRender;
   if (searchResults !== null && searchResults.length > 0) {
-    dataToRender = searchResults;
+    dataToRender = searchResults.slice(indexOfFirstFilm, indexOfLastFilm);
   } else if (searchResults !== null && searchResults.length === 0) {
     dataToRender = currentFilm;
   } else if (searchResults?.length === 0){
@@ -90,7 +91,11 @@ const Films = () => {
           )}
       <Pagination
         propPerPage={filmPerPage}
-        length={(searchResults !== null && searchResults.length > 0) ? searchResults.length : films.length}
+        length={ searchResults !== null && searchResults.length > 0
+          ? searchResults.length
+          : searchResults !== null
+          ? films.length
+          : 0}
         pagination={pagination}
         currentPage={currentPage}
       />

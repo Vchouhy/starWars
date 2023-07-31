@@ -40,11 +40,12 @@ const People = () => {
 
   const pagination = (pageNumber)=>{
     setCurrentPage(pageNumber)
-    setPersonPerPage(personPerPage)
   }
 
   const handleSearch = (searchQuery) => {
     dispatch(searchItems(searchQuery, "planets"));
+    setCurrentPage(1);
+
   };
 
   useEffect(() => {
@@ -52,19 +53,10 @@ const People = () => {
   }, [searchResults]);
 
 
-
-  // let dataToRender;
-  // if (searchResults !== null && searchResults.length > 0) {
-  //   dataToRender = searchResults;
-  // } else if (searchResults !== null && searchResults.length === 0) {
-  //   dataToRender = currentPerson;
-  // } else if (searchResults?.length === 0){
-  //   dataToRender = [];
-  // }
-
   let dataToRender;
   if (searchResults !== null && searchResults.length > 0) {
-    dataToRender = searchResults;
+    dataToRender = searchResults.slice(indexOfFirstPerson, indexOfLastPerson);
+
   } else if (searchResults !== null && searchResults.length === 0) {
     dataToRender = currentPerson;
   } else if (searchResults?.length === 0){
@@ -102,7 +94,11 @@ const People = () => {
       )}
       <Pagination
         propPerPage={personPerPage}
-        length={(searchResults !== null && searchResults.length > 0) ? searchResults.length : people.length}
+        length={ searchResults !== null && searchResults.length > 0
+          ? searchResults.length
+          : searchResults !== null
+          ? people.length
+          : 0}
         pagination={pagination}
         currentPage={currentPage}
       />

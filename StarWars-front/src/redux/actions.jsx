@@ -71,7 +71,6 @@ export const resetSearchResults = () => {
 };
 
 export const searchItems = (searchQuery, prop) => {
-  console.log(searchQuery)
   return async function (dispatch) {
     if (!prop) {
       // Si prop es undefined, asigna los valores iniciales del estado a hasResults

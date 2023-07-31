@@ -40,12 +40,13 @@ const Planets = () => {
 
   const pagination = (pageNumber) => {
     setCurrentPage(pageNumber);
-    setPlanetPerPage(planetPerPage)
 
   };
 
   const handleSearch = (searchQuery) => {
     dispatch(searchItems(searchQuery, "planets"));
+    setCurrentPage(1);
+
   };
 
     useEffect(() => {
@@ -54,9 +55,11 @@ const Planets = () => {
 
   let dataToRender;
   if (searchResults !== null && searchResults.length > 0) {
-    dataToRender = searchResults;
+    dataToRender = searchResults.slice(indexOfFirstPlanet, indexOfLastPlanet);
+
   } else if (searchResults !== null && searchResults.length === 0) {
     dataToRender = currentPlanet;
+
   } else if (searchResults?.length === 0){
     dataToRender = [];
   }
@@ -79,7 +82,7 @@ const Planets = () => {
           ) : (
             // Si dataToRender está vacío, mostrar el mensaje de "No films found."
             <p className="no-search-results">
-              The Force is not strong with your search. <br/> No matching characters found
+              The Force is not strong with your search. <br/> No matching planets found
             </p>
           )}
         </div>
@@ -91,7 +94,11 @@ const Planets = () => {
           )}
       <Pagination
         propPerPage={planetPerPage}
-        length={(searchResults !== null && searchResults.length > 0) ? searchResults.length: planets.length}
+        length={ searchResults !== null && searchResults.length > 0
+          ? searchResults.length
+          : searchResults !== null
+          ? planets.length
+          : 0}
         pagination={pagination}
         currentPage={currentPage}
       />
