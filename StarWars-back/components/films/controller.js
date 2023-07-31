@@ -1,37 +1,35 @@
-
-const Films = require('./model');
+const Films = require("./model");
 
 module.exports.getAllFilms = async () => {
-    try {
-      const films = await Films.aggregate(pipeline);
-      return films
-    } catch (error) {
-      // res.status(500).json({ message: "Error al obtener vehicles"});
-    }
-  };
+  try {
+    const films = await Films.aggregate(pipeline);
+    return films;
+  } catch (error) {
+    res.status(500).json({ message: "Error al obtener vehicles"});
+  }
+};
 
-  module.exports.search = async (search) => {
-
-    try {
-      const searchResults = await Films.find({ title: { $regex: search.search, $options: 'i' } });
-   return searchResults
-    } catch (error) {
-      console.error('Error al buscar elementos:', error);
-      res.status(500).json({ error: 'Error al buscar elementos' });
-    }
-  };
-  
-
+module.exports.search = async (search) => {
+  try {
+    const searchResults = await Films.find({
+      title: { $regex: search.search, $options: "i" },
+    });
+    return searchResults;
+  } catch (error) {
+    console.error("Error al buscar elementos:", error);
+    res.status(500).json({ error: "Error al buscar elementos" });
+  }
+};
 
 let pipeline = [
   {
     $lookup: {
-      from: 'people',
-      let: { peopleLinks: '$characters' },
+      from: "people",
+      let: { peopleLinks: "$characters" },
       pipeline: [
         {
           $match: {
-            $expr: { $in: ['$url', '$$peopleLinks'] },
+            $expr: { $in: ["$url", "$$peopleLinks"] },
           },
         },
         {
@@ -41,17 +39,17 @@ let pipeline = [
           },
         },
       ],
-      as: 'charactersWithNames',
+      as: "charactersWithNames",
     },
   },
   {
     $lookup: {
-      from: 'vehicles',
-      let: { vehiclesLinks: '$vehicles' },
+      from: "vehicles",
+      let: { vehiclesLinks: "$vehicles" },
       pipeline: [
         {
           $match: {
-            $expr: { $in: ['$url', '$$vehiclesLinks'] },
+            $expr: { $in: ["$url", "$$vehiclesLinks"] },
           },
         },
         {
@@ -61,17 +59,17 @@ let pipeline = [
           },
         },
       ],
-      as: 'vehiclesWithNames',
+      as: "vehiclesWithNames",
     },
   },
   {
     $lookup: {
-      from: 'planets',
-      let: { planetLink: '$planets' },
+      from: "planets",
+      let: { planetLink: "$planets" },
       pipeline: [
         {
           $match: {
-            $expr: { $in: ['$url', '$$planetLink'] },
+            $expr: { $in: ["$url", "$$planetLink"] },
           },
         },
         {
@@ -81,17 +79,17 @@ let pipeline = [
           },
         },
       ],
-      as: 'planetsWithNames',
+      as: "planetsWithNames",
     },
   },
   {
     $lookup: {
-      from: 'species',
-      let: { speciesLinks: '$species' },
+      from: "species",
+      let: { speciesLinks: "$species" },
       pipeline: [
         {
           $match: {
-            $expr: { $in: ['$url', '$$speciesLinks'] },
+            $expr: { $in: ["$url", "$$speciesLinks"] },
           },
         },
         {
@@ -101,17 +99,17 @@ let pipeline = [
           },
         },
       ],
-      as: 'speciesWithNames',
+      as: "speciesWithNames",
     },
   },
   {
     $lookup: {
-      from: 'starships',
-      let: { starshipLinks: '$starships' },
+      from: "starships",
+      let: { starshipLinks: "$starships" },
       pipeline: [
         {
           $match: {
-            $expr: { $in: ['$url', '$$starshipLinks'] },
+            $expr: { $in: ["$url", "$$starshipLinks"] },
           },
         },
         {
@@ -121,16 +119,16 @@ let pipeline = [
           },
         },
       ],
-      as: 'starshipsWithNames',
+      as: "starshipsWithNames",
     },
   },
   {
     $addFields: {
-      characters: '$charactersWithNames.name',
-      planets: '$planetsWithNames.name',
-      vehicles: '$vehiclesWithNames.name',
-      starships: '$starshipsWithNames.name',
-      species: '$speciesWithNames.name',
+      characters: "$charactersWithNames.name",
+      planets: "$planetsWithNames.name",
+      vehicles: "$vehiclesWithNames.name",
+      starships: "$starshipsWithNames.name",
+      species: "$speciesWithNames.name",
     },
   },
   {
@@ -150,4 +148,4 @@ let pipeline = [
       starships: 1,
     },
   },
-]
+];

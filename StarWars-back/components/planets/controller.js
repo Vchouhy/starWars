@@ -2,7 +2,6 @@ const Planet = require('./model');
 const mongoose = require('mongoose');
 
 
-// toObjectId = (id) => mongoose.Types.ObjectId(id);
 
 const getAllPlanetsFromDB = async () => {
   try {
@@ -107,5 +106,4 @@ const pipeline = [
 
 module.exports = {
   getAllPlanetsFromDB, search
-//   getById
 };
