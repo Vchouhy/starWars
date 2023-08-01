@@ -3,7 +3,7 @@ import { Route, withRouter, Switch } from "react-router-dom";
 import NavBar from "./Components/GenericComponents/NavBar/NavBar";
 import NotFound from "./Components/GenericComponents/NotFound/NotFound";
 import axios from 'axios';
-axios.defaults.baseURL = 'http://localhost:5001';
+axios.defaults.baseURL = 'https://starwars-production-088c.up.railway.app';
 
 function App({ location }) {
   // Lista de rutas donde se debe mostrar la NavBar
