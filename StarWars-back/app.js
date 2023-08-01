@@ -6,9 +6,9 @@ const seedData = require('./seeder'); // Importar la función de carga de datos 
 const app = express();
 const cors = require('cors')
 require ('dotenv').config()
-const {PORT, DB_HOST, DB_PROJECT} = process.env
+const {PORT, DB_HOST, DB_PROJECT, URL} = process.env
 
-const mongoURI = `mongodb://localhost:${DB_HOST}/${DB_PROJECT}`; // Cambiar la URL según la configuración de tu servidor MongoDB
+const mongoURI = `${URL}`; // Cambiar la URL según la configuración de tu servidor MongoDB
 
 // Middleware para analizar datos JSON en el cuerpo de las solicitudes
 app.use(cors({ origin: 'https://star-wars-vchouhy.vercel.app' }));
