@@ -4,13 +4,14 @@ const morgan = require('morgan');
 const mainRouter = require('./routes/index');
 const seedData = require('./seeder'); // Importar la función de carga de datos inicial
 const app = express();
-const port = 5001;
 const cors = require('cors')
+require ('dotenv').config()
+const {PORT, DB_HOST, DB_PROJECT} = process.env
 
-const mongoURI = 'mongodb://localhost:27017/starWars'; // Cambiar la URL según la configuración de tu servidor MongoDB
+const mongoURI = `mongodb://localhost:${DB_HOST}/${DB_PROJECT}`; // Cambiar la URL según la configuración de tu servidor MongoDB
 
 // Middleware para analizar datos JSON en el cuerpo de las solicitudes
-app.use(cors({ origin: 'http://localhost:3000' }));
+app.use(cors({ origin: 'https://star-wars-vchouhy.vercel.app' }));
 app.use(morgan('dev'));
 app.use(express.json());
 
@@ -35,6 +36,6 @@ app.use((req, res, next) => {
 app.use(mainRouter);
 
 // Iniciar el servidor
-app.listen(port, () => {
-  console.log(`Servidor backend iniciado en http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log('Servidor backend iniciado en', PORT );
 });
