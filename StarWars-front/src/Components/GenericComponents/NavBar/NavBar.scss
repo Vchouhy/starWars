@@ -44,11 +44,14 @@
 @media screen and (max-width: 768px) {
   .navbar-main-container{
     width: max-content;
+    position: sticky !important;
   }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .navbar-main-container{
     width: auto;
+    position: sticky !important;
+
   }
 }
