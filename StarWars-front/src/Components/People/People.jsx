@@ -6,7 +6,7 @@ import { useModal } from "../../hooks/useModal";
 import Pagination from "../GenericComponents/Pagination/Pagination";
 import SearchBar from "../GenericComponents/SearchBar/SearchBar";
 import "./People.scss";
-import { getAllPeople, searchItems, resetSearchResults } from "../../redux/actions";
+import { getAllPeople, searchItems, resetSearchResults, getPeopleById } from "../../redux/actions";
 
 const People = () => {
   const searchResults = useSelector((state) => state.searchResults.people);

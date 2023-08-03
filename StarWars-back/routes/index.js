@@ -7,6 +7,7 @@ const planetsRouter = require('./../components/planets/route')
 const mainRouter = Router();
 
 mainRouter.use('/people', peopleRouter);
+mainRouter.use('/people/:id', peopleRouter);
 mainRouter.use('/people/search', peopleRouter);
 
 mainRouter.use('/films', filmsRouter);

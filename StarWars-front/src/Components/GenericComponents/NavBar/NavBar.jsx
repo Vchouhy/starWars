@@ -4,11 +4,11 @@ import "./NavBar.scss";
 
 
 
-const NavBar = () => {
+const NavBar = ({ shouldShowBackground, isContactPage }) => {
  
 
   return (
-    <div className="navbar-main-container">
+    <div className={`navbar-main-container ${isContactPage ? "contact-page-navbar" : ""}`}>
       <Link to="/home" className="link">
         Home
       </Link>
@@ -25,7 +25,9 @@ const NavBar = () => {
         Vehicles
       </Link>
      
-      
+      <Link to="/contact" className="link">
+        Contact
+      </Link>
     </div>
   );
 };

@@ -59,7 +59,7 @@ const Modals = ({ children, isOpen, closeModal }) => {
           height: "200px",
           width: "200px",
           margin: "0 auto",
-          marginRight: "1rem"
+          marginRight: "1rem",
         }}
       />
     </div>

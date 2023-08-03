@@ -158,9 +158,19 @@ const search = async (search) => {
   }
 };
 
+const getById = async (id) =>{
+  try{
+    const peopleId = await Person.findById(id.id)
+    if(peopleId) return peopleId;
+  }catch (error) {
+    console.error("Error al buscar elementos:", error);
+    res.status(500).json({ error: "Error al buscar elementos" });
+  }
+};
 
 
 module.exports = {
   getAllPeople,
   search,
+  getById
 };

@@ -8,9 +8,7 @@ const svgMap = {
   'container-planet-card': planetsSVG,
   'container-person-card': personSVG,
   'container-films-card': filmSVG,
-
   'container-vehicle-card': vehicleSVG,
-
 };
 
 

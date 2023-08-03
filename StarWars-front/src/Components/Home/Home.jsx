@@ -6,6 +6,7 @@ import './Home.scss'
 import Wing1 from '../GenericComponents/Assets/pngwing1.svg'
 import Background from '../GenericComponents/Assets/4834a610294000311.svg'
 import Frase from '../GenericComponents/Assets/frase1.png'
+import { Link } from "react-router-dom";
 
 const Home = ()=>{
 
@@ -38,6 +39,12 @@ const Home = ()=>{
       </p>
       <img src={Wing1} alt="Background" className="down-image" />
     </div>
+          <div className="cta-container">
+
+          <Link to='/contact' className="cta-button">
+          Connect with the Force
+      </Link>
+          </div>
           </div>
         </div>
       );

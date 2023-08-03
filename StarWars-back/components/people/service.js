@@ -26,7 +26,17 @@ const search = async (req, res, next) =>{
     next(createError(500,'errorservice'));
   }
 }
+const getById = async (req, res, next)=>{
+  try{
+    console.log(req.params)
+    res.send(await controller.getById({
+      id: req.params.id
+    }))
+  }catch(e){
+    next(createError(500, 'errorservice'))
+  }
+}
 
 module.exports = {
-  getAllPeopleFromDB, search
+  getAllPeopleFromDB, search, getById
 };

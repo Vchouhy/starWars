@@ -1,4 +1,4 @@
-import { GET_PEOPLE, GET_PLANETS, GET_VEHICLES, GET_FILMS, SEARCH_ITEMS, ORDER_ASC_DES, GET_ALL_DATA,RESET_SEARCH_RESULTS  } from "./actions";
+import { GET_PEOPLE, GET_PLANETS, GET_VEHICLES, GET_FILMS, SEARCH_ITEMS, ORDER_ASC_DES, GET_ALL_DATA,RESET_SEARCH_RESULTS, PEOPLE_ID  } from "./actions";
 
 const initialState = {
   people: [],
@@ -8,6 +8,7 @@ const initialState = {
   peopleId: [],
   total: 0,
   loading: true,
+  peopleId: [],
   searchResults: {
     planets: [],
     people: [],
@@ -69,7 +70,8 @@ const rootReducer = (state = initialState, action) => {
             [propToOrder]: sortedResults,
           },
         };
-  
+    case PEOPLE_ID:
+      return {...state, peopleId: action.payload};
     default:
       return { ...state };
       

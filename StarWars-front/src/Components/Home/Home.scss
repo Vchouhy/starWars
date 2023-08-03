@@ -52,6 +52,34 @@
   max-width: 60%; 
 }
 
+.cta-container{
+  display: flex;
+    justify-content: center;
+    padding-bottom: 2rem;
+
+}
+
+.cta-button {
+  
+  display: inline-block;
+  background-color: #FFD700; /* Golden color similar to lightsabers */
+  color: #000; /* Black text color */
+  padding: 12px 20px;
+  font-size: 18px;
+  text-decoration: none;
+  border-radius: 4px;
+  border: none;
+  transition: background-color 0.3s ease;
+  padding-bottom: 1rem;
+  box-shadow: 0 0 10px transparent;
+}
+
+.cta-button:hover {
+  background-color: #FFEA00; /* Light golden color on hover to highlight */
+  cursor: pointer;
+  /* Adjust the box shadow color and size to achieve the glow effect */
+  box-shadow: 0 0 20px 10px rgba(255, 255, 0, 0.7); /* Yellow glow with 20px spread and 5px blur */
+}
 
 
 /* Estilos para pantallas más pequeñas */

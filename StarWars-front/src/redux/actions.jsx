@@ -27,6 +27,18 @@ export const getAllPeople = () => {
    };
  };
 
+ export const getPeopleById = (id) => {
+  return async function (dispatch){
+    try{
+      const apiData = await axios.get(
+       `/people/${id}`
+      )
+      dispatch({type: PEOPLE_ID, payload: apiData.data})
+    }catch(e){
+      console.log('error', e)
+    }
+  }
+ }
 
 //Section PLANETS
 export const getAllPlanets = () => {
